@@ -1,12 +1,10 @@
-import authService from "./appwrite/auth"
-import Login from "./components/login"
-import Signup from "./components/signpu"
+import SignUP from "./components/auth/signUp"
 function App() {
   return (
     <>
       <h1>Deepak jewellers</h1>
-      <Signup />
-    </>
+      <SignUP/>
+  </>
   )
 }
 

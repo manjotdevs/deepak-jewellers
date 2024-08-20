@@ -1,28 +1,26 @@
 import React, { useState } from "react";
-import authService from "../appwrite/auth";
+import { useNavigate } from "react-router-dom";
+import { account} from "../../appwrite/config";
+import { ID } from "appwrite";
 
-const Login = () => {
+const SignUP= () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const navigator = useNavigate()
 
-  const handleRegister = async (e) => {
+  const signup = async (e) => {
     e.preventDefault();
-    try {
-      const result = await authService.createAccount({email, password, name});
-      result
-        .then(function (ress) {
-          console.log("sucress", ress);
-        })
-        .catch((err) => {
-          console.log("error", err);
-        });
-      console.log("User logged in:", result);
-    } catch (error) {
-      console.error("Error creating user:", error);
-    }
+    await account
+      .create(ID.unique(), email, password, name)
+      .then(function (ress) {
+        console.log("User created successfully", ress);
+        navigator("/home")
+      })
+      .catch(function (err) {
+        console.error("Failed to create user", err);
+      });
   };
-
   return (
     <>
       <input
@@ -43,9 +41,9 @@ const Login = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <button onClick={handleRegister}>Register</button>
+      <button onClick={signup}>Register</button>
     </>
   );
 };
 
-export default Login;
+export default SignUP;
