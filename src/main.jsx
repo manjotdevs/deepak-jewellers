@@ -6,6 +6,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./page/home.jsx";
 import { Provider } from "react-redux";
 import { store } from "./store/store.js";
+import Modal from "react-modal";
+
+// Set the app element globally for accessibility
+Modal.setAppElement("#root");
 
 const router = createBrowserRouter([
   {
