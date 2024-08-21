@@ -5,6 +5,7 @@ import { ID } from "appwrite";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/authSlice";
 import Modal from "react-modal";
+import Button from "../ui/buttion";
 
 const SignUP = () => {
   const [email, setEmail] = useState("");
@@ -36,15 +37,14 @@ const SignUP = () => {
 
   return (
     <>
-      <button
+      <Button
+      type="primary"
         onClick={() => setModalOpen(true)}
-        className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300"
       >
         Open Sign Up Modal
-      </button>
+      </Button>
 
-      <Modal isOpen={modalOpen}>
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <Modal isOpen={modalOpen} className="flex justify-center items-center min-h-screen bg-gray-100">
           <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
             <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
               Sign Up
@@ -54,36 +54,35 @@ const SignUP = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-3 mb-4 border border-gray-300 rounded-lg"
+              className="w-full text-cyan-900 p-3 mb-4 border border-gray-300 rounded-lg"
             />
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 mb-4 border border-gray-300 rounded-lg"
+              className="w-full  text-cyan-900 p-3 mb-4 border border-gray-300 rounded-lg"
             />
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 mb-6 border border-gray-300 rounded-lg"
+              className="w-full p-3 mb-6 border  text-cyan-900 border-gray-300 rounded-lg"
             />
-             <button
+             <Button
               onClick={signup}
               className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
             >
               Register
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={()=>{setModalOpen(false)}}
-              className="w-full bg-gray-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
+              type="secondary"
             >
               Cancle
-            </button>
+            </Button>
           </div>
-        </div>
       </Modal>
     </>
   );
