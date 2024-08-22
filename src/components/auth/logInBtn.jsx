@@ -1,27 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../ui/buttion";
-import { account } from "../../appwrite/config";
+import Dialog from "../ui/dialog";
 
-function LogoutButton() {
-  const handleLogout = async () => {
-    try {
-      await account.deleteSession("current");
-      alert("You have been logged out.");
-      // Redirect or update state after logout
-      window.location.href = "/login"; // Redirect to login page or update state
-    } catch (error) {
-      console.error("Logout failed:", error.message);
-    }
-  };
+function LogInBtn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [modal, setModal] = useState(false);
+  const [error, setError] = useState("");
 
   return (
-    <button
-      onClick={handleLogout}
-      className="bg-red-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-600 transition duration-300"
-    >
-      Logout
-    </button>
+    <>
+      <Button type="primary" onClick={() => setModal(true)}>
+        Login
+      </Button>
+
+      <Dialog
+        isOpen={modal}
+        className="flex justify-center items-center min-h-screen"
+        children={
+          <div className="bg-gray-800 text-white p-8 rounded-lg shadow-md w-full max-w-md">
+            <h2 className="text-2xl text-white font-bold text-left pb-8">
+              Log in
+            </h2>
+            {error && <p className="text-red-600">{error}</p>}
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full text-cyan-900 p-3 mb-4 border border-gray-300 rounded-lg"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-3 mb-6 border text-cyan-900 border-gray-300 rounded-lg"
+            />
+            <div className="flex justify-between space-x-4 pb-4">
+              <Button
+                type="destroy-active"
+                className="font-bold w-1/2"
+                onClick={() => setModal(false)}
+              >
+                Cancel
+              </Button>
+
+              <Button type="primary" className="w-1/2">
+                Log in
+              </Button>
+            </div>
+            <p className="text-white text-center opacity-50">--or--</p>
+            <Button
+              type="custome"
+              className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
+            >
+              Google
+            </Button>
+
+            <Button
+              type="custome"
+              className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
+            >
+              Apple
+            </Button>
+
+            <Button
+              type="custome"
+              className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
+            >
+              Facebook
+            </Button>
+          </div>
+        }
+      />
+    </>
   );
 }
 
-export default LogoutButton;
+export default LogInBtn;
