@@ -1,12 +1,16 @@
 import React from "react";
 import Button from "../ui/buttion";
 import { account } from "../../appwrite/config";
+import { useNavigate } from "react-router-dom";
 
-function Logout() {
+function LogoutBtn() {
+  const navigate = useNavigate()
   const handleLogout = async () => {
     try {
       await account.deleteSession("current");
       alert("You have been logged out.");
+      navigate("/");
+
       //TODO: Redirect or update state after logout
     } catch (error) {
       console.error("Logout failed:", error.message);
@@ -23,4 +27,4 @@ function Logout() {
   );
 }
 
-export default Logout;
+export default LogoutBtn
