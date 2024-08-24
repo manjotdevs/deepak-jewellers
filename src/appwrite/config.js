@@ -5,6 +5,5 @@ const client = new Client();
 client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
 
 const account = new Account(client);
-const id = ID.unique();
 
-export {account, id}
+export {account}

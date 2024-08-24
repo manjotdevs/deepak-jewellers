@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import Button from "../ui/buttion";
 import Dialog from "../ui/dialog";
+import { account } from "../../appwrite/config";
 
 function LogInBtn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
   const [error, setError] = useState("");
+
+  const LogUserIn = async (e) => {
+    e.preventDefault();
+    try {
+      const user = await account.createEmailPasswordSession(email, password);
+      console.log("User logged in successfully",user);
+      // TODO: Redirect to dashboard or home page
+      setModal(false);
+    } catch (error) {
+      setError(error.message);
+      console.error("Failed to log in:", error.message);
+    }
+  };
 
   return (
     <>
@@ -46,7 +60,7 @@ function LogInBtn() {
                 Cancel
               </Button>
 
-              <Button type="primary" className="w-1/2">
+              <Button type="primary" className="w-1/2" onClick={LogUserIn}>
                 Log in
               </Button>
             </div>
