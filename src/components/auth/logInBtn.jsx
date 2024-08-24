@@ -66,21 +66,21 @@ function LogInBtn() {
             </div>
             <p className="text-white text-center opacity-50">--or--</p>
             <Button
-              type="custome"
+              type="custom"
               className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
             >
               Google
             </Button>
 
             <Button
-              type="custome"
+              type="custom"
               className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
             >
               Apple
             </Button>
 
             <Button
-              type="custome"
+              type="custom"
               className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
             >
               Facebook
