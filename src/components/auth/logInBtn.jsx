@@ -13,7 +13,7 @@ function LogInBtn() {
     e.preventDefault();
     try {
       const user = await account.createEmailPasswordSession(email, password);
-      console.log("User logged in successfully",user);
+      console.log("User logged in successfully", user);
       // TODO: Redirect to dashboard or home page
       setModal(false);
     } catch (error) {

@@ -13,7 +13,9 @@ const Button = ({ type = "primary", children, className = "", ...props }) => {
       ? " bg-red-600 hover:bg-red-700 text-white border border-rounded-lg border-slate-800 border-2 "
       : type === "link"
       ? "text-blue-800 font-semibold hover:opacity-80 focus:outline-none"
-      : type === "custom" // Fix typo here
+      : type === "custom"
+      ? "rounded-none"
+      : null
   } ${className}`;
 
   return (
@@ -30,7 +32,7 @@ Button.propTypes = {
     "link",
     "destroy",
     "destroy-active",
-    "custom", // Fix typo here as well
+    "custom",
   ]),
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
