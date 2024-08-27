@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { account } from "../../appwrite/config";
 import { ID } from "appwrite";
 import Dialog from "../ui/dialog";
-import Button from "../ui/buttion";
+import Button from "../ui/button";
 
-const SignUp = () => {
+const SignUpBtn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -26,7 +26,7 @@ const SignUp = () => {
         console.log("User logged in successfully", session);
         //TODO: need to add user to redux store
         navigate("/home");
-        {i(!session)}
+        window.location.reload();
       } catch (err) {
         alert("Failed to log in: " + err.message);
         navigate("/");
@@ -91,4 +91,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpBtn;

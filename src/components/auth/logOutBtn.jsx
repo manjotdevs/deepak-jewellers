@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../ui/buttion";
+import Button from "../ui/button";
 import { account } from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,7 @@ function LogoutBtn() {
       await account.deleteSession("current");
       alert("You have been logged out.");
       navigate("/");
+      window.location.reload();
 
       //TODO: Redirect or update state after logout
     } catch (error) {

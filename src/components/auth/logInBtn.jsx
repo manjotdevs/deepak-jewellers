@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../ui/buttion";
+import Button from "../ui/button";
 import Dialog from "../ui/dialog";
 import { account } from "../../appwrite/config";
 
@@ -14,6 +14,7 @@ function LogInBtn() {
     try {
       const user = await account.createEmailPasswordSession(email, password);
       console.log("User logged in successfully", user);
+      window.location.reload();
       // TODO: Redirect to dashboard or home page
       setModal(false);
     } catch (error) {
