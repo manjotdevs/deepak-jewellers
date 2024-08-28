@@ -5,7 +5,7 @@ import SignUpBtn from "../auth/signUpBtn";
 import { account } from "../../appwrite/config";
 import { GrSearch } from "react-icons/gr";
 import Input from "../ui/input";
-
+import { useSelector } from "react-redux";
 function Header() {
   const [status, setStatus] = useState(null);
 

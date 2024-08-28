@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../store/authSlice";
 import { account } from "../../appwrite/config";
 import { ID } from "appwrite";
 import Dialog from "../ui/dialog";
@@ -11,28 +13,29 @@ const SignUpBtn = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+  const dispatch = useDispatch();
 
   const signup = async (e) => {
     e.preventDefault();
     try {
+      // Create a new user account in Appwrite
       const user = await account.create(ID.unique(), email, password, name);
+      console.log(user);
+      // Dispatch the login action with the appropriate payload structure
+      dispatch(login({ userData: user }));
+
       console.log("User created successfully", user);
-      // Log the user
-      try {
-        const session = await account.createEmailPasswordSession(
-          email,
-          password
-        );
-        console.log("User logged in successfully", session);
-        //TODO: need to add user to redux store
-        navigate("/home");
-        window.location.reload();
-      } catch (err) {
-        alert("Failed to log in: " + err.message);
-        navigate("/");
-      }
+
+      // Log user
+      const session = await account.createEmailPasswordSession(email, password);
+      console.log("User logged in successfully", session);
+
+      //navigate("/home");
+
+      //window.location.reload();
     } catch (err) {
       console.error("Failed to create user", err);
+      alert("Failed to sign up: " + err.message);
     }
   };
 

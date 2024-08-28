@@ -14,7 +14,7 @@ function LogInBtn() {
     try {
       const user = await account.createEmailPasswordSession(email, password);
       console.log("User logged in successfully", user);
-      window.location.reload();
+      //window.location.reload();
       // TODO: Redirect to dashboard or home page
       setModal(false);
     } catch (error) {
