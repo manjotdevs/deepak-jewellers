@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../ui/button";
+import Input from "../ui/Input";
 import Dialog from "../ui/dialog";
 import { account } from "../../appwrite/config";
 
@@ -38,14 +39,14 @@ function LogInBtn() {
               Log in
             </h2>
             {error && <p className="text-red-600">{error}</p>}
-            <input
+            <Input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full text-cyan-900 p-3 mb-4 border border-gray-300 rounded-lg"
             />
-            <input
+            <Input
               type="password"
               placeholder="Password"
               value={password}
@@ -54,34 +55,34 @@ function LogInBtn() {
             />
             <div className="flex justify-between space-x-4 pb-4">
               <Button
-                type="destroy-active"
+                style="destroy-active"
                 className="font-bold w-1/2"
                 onClick={() => setModal(false)}
               >
                 Cancel
               </Button>
 
-              <Button type="primary" className="w-1/2" onClick={LogUserIn}>
+              <Button style="primary" className="w-1/2" onClick={LogUserIn}>
                 Log in
               </Button>
             </div>
             <p className="text-white text-center opacity-50">--or--</p>
             <Button
-              type="custom"
+             style="custom"
               className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
             >
               Google
             </Button>
 
             <Button
-              type="custom"
+              style="custom"
               className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
             >
               Apple
             </Button>
 
             <Button
-              type="custom"
+              style="custom"
               className="w-full my-2 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
             >
               Facebook

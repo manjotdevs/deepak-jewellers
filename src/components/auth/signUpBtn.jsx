@@ -6,6 +6,7 @@ import { account } from "../../appwrite/config";
 import { ID } from "appwrite";
 import Dialog from "../ui/dialog";
 import Button from "../ui/button";
+import Input from "../ui/Input";
 
 const SignUpBtn = () => {
   const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ const SignUpBtn = () => {
 
   return (
     <>
-      <Button type="primary" onClick={() => setModal(true)}>
+      <Button style="primary" onClick={() => setModal(true)}>
         Sign in
       </Button>
 
@@ -53,21 +54,21 @@ const SignUpBtn = () => {
             <h2 className="text-2xl text-white font-bold text-left pb-8">
               Sign Up
             </h2>
-            <input
+            <Input
               type="text"
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full text-cyan-900 p-3 mb-4 border border-gray-300 rounded-lg"
             />
-            <input
+            <Input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full  text-cyan-900 p-3 mb-4 border border-gray-300 rounded-lg"
             />
-            <input
+            <Input
               type="password"
               placeholder="Password"
               value={password}
@@ -76,14 +77,14 @@ const SignUpBtn = () => {
             />
             <div className="flex justify-between space-x-4 pb-4">
               <Button
-                type="destroy-active"
+                style="destroy-active"
                 className="font-bold w-1/2"
                 onClick={() => setModal(false)}
               >
                 Cancel
               </Button>
 
-              <Button type="primary" className="w-1/2" onClick={signup}>
+              <Button style="primary" className="w-1/2" onClick={signup}>
                 Sign up
               </Button>
             </div>

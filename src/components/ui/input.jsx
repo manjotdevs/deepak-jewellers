@@ -34,35 +34,35 @@ const Input = ({
       ? "rounded-r-xl"
       : roundness === "r80%"
       ? roundness === "l5%"
-      ? "rounded-l"
-      : roundness === "l20%"
-      ? "rounded-l-md"
-      : roundness === "l40%"
-      ? "rounded-l-lg"
-      : roundness === "l60%"
-      ? "rounded-l-xl"
-      : roundness === "l80%"
-      :null
+        ? "rounded-l"
+        : roundness === "l20%"
+        ? "rounded-l-md"
+        : roundness === "l40%"
+        ? "rounded-l-lg"
+        : roundness === "l60%"
+        ? "rounded-l-xl"
+        : roundness === "l80%"
+      : null;
 
   const styleClasses = `h-12 outline-none border-none ${
     style === "primary"
-      ? `bg-orange-50 text-gray-800 ${roundednessHandler}`
+      ? `bg-orange-50 text-gray-800 p-4 ${roundednessHandler}`
       : style === "secondary"
-      ? `bg-gray-800 text-slate-100 ${roundednessHandler} `
+      ? `bg-gray-800 text-slate-100 p-4 ${roundednessHandler} `
       : style === "dark"
-      ? `bg-gray-950 text-slate-200 ${roundednessHandler}`
+      ? `bg-gray-950 text-slate-200 p-4 ${roundednessHandler}`
       : style === "light"
-      ? `bg-slate-100 text-gray-800 ${roundednessHandler}`:
-      ""
+      ? `bg-slate-100 text-gray-800 p-4 ${roundednessHandler}`
+      : ""
   } ${className}`;
 
   return (
-      <input
-        type={type}
-        placeholder={placeholder}
-        className={styleClasses}
-        {...props}
-      />
+    <input
+      type={type}
+      placeholder={placeholder}
+      className={styleClasses}
+      {...props}
+    />
   );
 };
 

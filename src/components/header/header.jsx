@@ -4,7 +4,7 @@ import LogInBtn from "../auth/logInBtn";
 import SignUpBtn from "../auth/signUpBtn";
 import { account } from "../../appwrite/config";
 import { GrSearch } from "react-icons/gr";
-import Input from "../ui/input";
+import Input from "../ui/Input";
 import { useSelector } from "react-redux";
 function Header() {
   const [status, setStatus] = useState(null);
@@ -12,9 +12,8 @@ function Header() {
   const loginCheck = async () => {
     try {
       const user = await account.get();
-      setStatus(user.status === true);
+      setStatus(user.status);
     } catch (err) {
-      console.log("error", err);
       setStatus(false);
     }
   };
@@ -32,7 +31,7 @@ function Header() {
         </div>
         <div className="flex flex-1 w-[60%] justify-center text-center">
           <Button
-            type="custom"
+            style="custom"
             className="bg-orange-50 outline-none h-12 rounded-l-md text-gray-800"
           >
             <GrSearch size={28} />

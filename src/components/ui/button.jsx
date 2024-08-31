@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ type = "primary", children, className = "", ...props }) => {
+const Button = ({ style = "primary", children, className = "", ...props }) => {
   const buttonClasses = `px-4 py-2 rounded-lg font-semibold transition duration-300 ${
-    type === "primary"
+   style  === "primary"
       ? "bg-orange-600 text-white hover:bg-orange-700"
-      : type === "secondary"
+      : style === "secondary"
       ? "bg-gray-500 hover:bg-gray-600"
-      : type === "destroy"
+      : style === "destroy"
       ? "text-red-500 rounded-lg hover:bg-red-600 hover:text-white"
-      : type === "destroy-active"
+      : style === "destroy-active"
       ? " bg-red-600 hover:bg-red-700 text-white border border-rounded-lg border-slate-800 border-2 "
-      : type === "link"
+      : style === "link"
       ? "text-blue-800 font-semibold hover:opacity-80 focus:outline-none"
-      : type === "custom"
+      : style === "custom"
       ? "rounded-none"
       : null
   } ${className}`;

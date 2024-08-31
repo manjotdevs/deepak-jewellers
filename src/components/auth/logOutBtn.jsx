@@ -20,7 +20,7 @@ function LogoutBtn() {
 
   return (
     <Button
-    type="primary"
+    style="primary"
       onClick={handleLogout}
     >
       Logout

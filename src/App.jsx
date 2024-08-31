@@ -7,6 +7,7 @@ import Header from "./components/header/header";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Card from './components/ui/card'
+import Upload from "./components/storage/upload";
 
 function App() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function App() {
       <Logout />
       <LogInBtn />
       <button onClick={() => navigate("/home")}>Home Screen</button>
+      <Upload />
       
       {/* Use the userData variable in the JSX */}
       <p>{userData ? userData.name : "No user data available"}</p>
