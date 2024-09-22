@@ -5,8 +5,9 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./page/home.jsx";
 import { Provider } from "react-redux";
-import { store } from "./store/store.js";
+import { store,persistor } from "./store/store.js";
 import Modal from "react-modal";
+import { PersistGate } from 'redux-persist/integration/react'
 
 // Set the app element globally for accessibility
 Modal.setAppElement("#root");
@@ -25,7 +26,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <RouterProvider router={router} />
+      </PersistGate>
     </Provider>
   </StrictMode>
 );

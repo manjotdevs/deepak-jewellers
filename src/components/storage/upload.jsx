@@ -3,7 +3,7 @@ import { storage } from "../../appwrite/config";
 import conf from "../../appwrite/env";
 import { ID } from "appwrite";
 import Dialog from "../ui/dialog";
-import Input from "../ui/Input";
+import Input from "../ui/input";
 import Button from "../ui/button";
 
 const Upload = () => {

@@ -26,7 +26,7 @@ const Button = ({ style = "primary", children, className = "", ...props }) => {
 };
 
 Button.propTypes = {
-  type: PropTypes.oneOf([
+  style: PropTypes.oneOf([
     "primary",
     "secondary",
     "link",

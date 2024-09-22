@@ -6,7 +6,7 @@ import { account } from "../../appwrite/config";
 import { ID } from "appwrite";
 import Dialog from "../ui/dialog";
 import Button from "../ui/button";
-import Input from "../ui/Input";
+import Input from "../ui/input";
 
 const SignUpBtn = () => {
   const [email, setEmail] = useState("");
@@ -31,9 +31,9 @@ const SignUpBtn = () => {
       const session = await account.createEmailPasswordSession(email, password);
       console.log("User logged in successfully", session);
 
-      //navigate("/home");
+      navigate("/home");
 
-      //window.location.reload();
+      window.location.reload();
     } catch (err) {
       console.error("Failed to create user", err);
       alert("Failed to sign up: " + err.message);
