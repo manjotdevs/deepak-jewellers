@@ -15,14 +15,14 @@ import {
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false); // Dialog state
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const LoginUser = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const user = await account.createEmailPasswordSession(email, password);
       console.log("User logged in successfully", user);
-      setIsOpen(false); // Close dialog on success
+      setIsOpen(false);
     } catch (err: any) {
       console.error("Failed to log in:", err.message);
     }
@@ -55,8 +55,8 @@ const Login: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button 
-              className="font-bold w-1/2" 
+            <Button
+              className="font-bold w-1/2"
               onClick={() => setIsOpen(false)} // Close dialog on cancel
             >
               Cancel

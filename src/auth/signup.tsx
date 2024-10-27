@@ -3,6 +3,8 @@ import { ID } from "appwrite";
 import { account } from "@/lib/appwriteConf";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useDispatch } from "react-redux";
+import { login } from "../storage/userSlice";
 import {
   Dialog,
   DialogContent,
@@ -13,18 +15,20 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-const Signup = () => {
+const Signup: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const dispatch = useDispatch<any>();
 
-  const signupUser = async (e: FormEvent) => {
+  const signupUser = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     try {
       // Create a new user account in Appwrite
       const user = await account.create(ID.unique(), email, password, name);
       console.log(user);
       console.log("User created successfully", user);
+      dispatch(login({ name, email }));
 
       // Log user
       const session = await account.createEmailPasswordSession(email, password);
