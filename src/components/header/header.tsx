@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
-import { account } from "@/lib/appwriteConf";
 import { Link } from "react-router-dom";
 import Signup from "@/auth/signup";
 import Login from "@/auth/login";
+import { useSelector } from "react-redux";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { FaSearch } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { CiBellOn } from "react-icons/ci";
+import { TfiHeadphoneAlt } from "react-icons/tfi";
+import { AiOutlineRise } from "react-icons/ai";
+import { MdOutlineFileDownload } from "react-icons/md";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,27 +19,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
 const Header: React.FC = () => {
-  const [status, setStatus] = useState<boolean>(false);
-
-  const loginCheck = async (): Promise<void> => {
-    try {
-      const user = await account.get();
-      setStatus(user.status);
-    } catch (err) {
-      setStatus(false);
-    }
-  };
-
-  useEffect(() => {
-    loginCheck();
-  }, [status]);
+  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
+  const userName = useSelector((state: any) => state.user.name);
 
   return (
     <div className="w-full bg-white shadow-md h-20 p-4 flex items-center">
@@ -64,7 +50,7 @@ const Header: React.FC = () => {
         </div>
 
         <div className="flex ml-11 items-center space-x-12">
-          {status ? (
+          {isLoggedIn ? (
             <div className="flex items-center space-x-12">
               <div className="flex ">
                 <DropdownMenu>
@@ -73,7 +59,7 @@ const Header: React.FC = () => {
                     <p className="text-lg">Account</p>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuLabel>Manjot</DropdownMenuLabel>
+                    <DropdownMenuLabel>{userName}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>Profile</DropdownMenuItem>
                     <DropdownMenuItem>Orders</DropdownMenuItem>
@@ -82,21 +68,44 @@ const Header: React.FC = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-              <div className="flex gap-2 items-center justify-center">
-                <button>
-                  <LuShoppingCart className="text-2xl text-gray-600" />
-                </button>
-                <p className="text-lg text-gray-700">Cart</p>
+              <div>
+                <Link
+                  to="/cart"
+                  className="flex gap-2 items-center justify-center"
+                >
+                  <button>
+                    <LuShoppingCart className="text-2xl text-gray-600" />
+                  </button>
+                  <p className="text-lg text-gray-700">Cart</p>
+                </Link>
               </div>
               <div>
-                <Popover>
-                  <PopoverTrigger>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="flex items-center justify-center">
                     <BsThreeDotsVertical className="text-2xl text-gray-600" />
-                  </PopoverTrigger>
-                  <PopoverContent>
-                    Place content for the popover here.
-                  </PopoverContent>
-                </Popover>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem className="flex items-start justify-start">
+                      <CiBellOn />
+                      <p>Notification</p>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="flex items-start justify-start">
+                      <TfiHeadphoneAlt />
+                      <p>Customer Care</p>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="flex items-start justify-start ">
+                      <AiOutlineRise />
+                      <p>Advertise</p>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="flex items-start justify-start">
+                      <MdOutlineFileDownload />
+                      <p>Download App</p>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           ) : (
@@ -104,16 +113,6 @@ const Header: React.FC = () => {
               <div className="flex space-x-4">
                 <Login />
                 <Signup />
-              </div>
-              <div>
-                <Popover>
-                  <PopoverTrigger>
-                    <BsThreeDotsVertical className="text-2xl text-gray-600" />
-                  </PopoverTrigger>
-                  <PopoverContent>
-                    Place content for the popover here.
-                  </PopoverContent>
-                </Popover>
               </div>
             </div>
           )}

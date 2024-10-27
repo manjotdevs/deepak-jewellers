@@ -2,6 +2,8 @@ import { FormEvent, useState } from "react";
 import { account } from "@/lib/appwriteConf";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useDispatch } from "react-redux";
+import { login } from "../storage/userSlice";
 import {
   Dialog,
   DialogContent,
@@ -16,12 +18,17 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useDispatch<any>();
 
   const LoginUser = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const user = await account.createEmailPasswordSession(email, password);
       console.log("User logged in successfully", user);
+      const userName = await account.get();
+      console.log(userName);
+      dispatch(login({ name: userName.name, email: userName.email })); // Dispatch the login action with user data
+
       setIsOpen(false);
     } catch (err: any) {
       console.error("Failed to log in:", err.message);

@@ -19,6 +19,7 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch<any>();
 
   const signupUser = async (e: FormEvent): Promise<void> => {
@@ -42,8 +43,10 @@ const Signup: React.FC = () => {
 
   return (
     <>
-      <Dialog>
-        <DialogTrigger>Signup</DialogTrigger>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogTrigger asChild>
+          <Button onClick={() => setIsOpen(true)}>Sign up</Button>
+        </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Signup</DialogTitle>
@@ -72,7 +75,14 @@ const Signup: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button className="font-bold w-1/2">Cancel</Button>
+            <Button
+              className="font-bold w-1/2"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              Cancel
+            </Button>
 
             <Button className="w-1/2" onClick={signupUser}>
               Signup
